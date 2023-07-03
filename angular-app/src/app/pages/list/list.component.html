@@ -1,0 +1,26 @@
+<div class="box-top">
+  <div class="sair" routerLink="/">Sair</div>
+  <div class="titulo-site">Sistema de controle de atividades</div>
+
+  <nav class="navbar justify-content-between">
+    <a class="navbar-brand">Atividades Cadastradas</a>
+    <app-modal-cadastro></app-modal-cadastro>
+  </nav>
+</div>
+
+<div class="box-container">
+  <div class="card" id="card" *ngFor="let tarefa of tarefas">
+    <p class="card-text" id="form-title">{{ tarefa.title }}</p>
+    <p class="card-text" id="form-descripton">{{ tarefa.description }}</p>
+
+    <p class="card-text" id="form-date-time">
+      <i class="bi bi-calendar">{{ tarefa.date }}</i>
+      <i class="bi bi-clock">{{ tarefa.time }}</i>
+    </p>
+
+    <div class="group-botao-structure">
+      <app-modal-atualizar></app-modal-atualizar>
+      <app-modal-excluir></app-modal-excluir>
+    </div>
+  </div>
+</div>

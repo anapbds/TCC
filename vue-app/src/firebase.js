@@ -3,15 +3,14 @@ import "firebase/database";
 import "firebase/auth";
 
   var firebaseConfig = {
-    apiKey: "AIzaSyDWeI9YDiSVV23PmMPvCsESG-IB4D3__c0",
-    authDomain: "gestao-tarefas-40c08.firebaseapp.com",
-    projectId: "gestao-tarefas-40c08",
-    storageBucket: "gestao-tarefas-40c08.appspot.com",
-    messagingSenderId: "546393215838",
-    appId: "1:546393215838:web:e909604f81fcb89549f5cf"
+    apiKey: "AIzaSyBCQ-xusg0Wl49wIbw6L1BQN-2RQBxUuHQ",
+    authDomain: "gestao-tarefas-fd276.firebaseapp.com",
+    databaseURL: "https://gestao-tarefas-fd276-default-rtdb.firebaseio.com",
+    projectId: "gestao-tarefas-fd276",
+    storageBucket: "gestao-tarefas-fd276.appspot.com",
+    messagingSenderId: "560218250951",
+    appId: "1:560218250951:web:2356dfeb93aa54613268e2"
   };
-
-
   firebase.initializeApp(firebaseConfig);
 
   const database = firebase.database().ref("/tarefas");

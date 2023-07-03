@@ -1,0 +1,32 @@
+.conteiner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #F6F7F8;
+}
+
+ h4, .h4 {
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+}
+
+.cardtitle {
+  color: #0d3c3f;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.opcao {
+  text-align: center;
+  margin: 6px;
+  font-size: 12px;
+}
+
+.btn{
+  background-color: #0d3c3f !important;
+  width: 100%;
+  color: #FFFF;
+}

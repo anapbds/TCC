@@ -109,7 +109,7 @@ export default {
   padding: 1rem;
 }
 
-.opcao {
+.opcao{
   text-align: center;
   margin: 6px;
   font-size: 12px;
@@ -118,5 +118,6 @@ export default {
 .Button2 {
   background-color: #0d3c3f !important;
   width: 100%;
+  color: #FFFF;
 }
-</style>>
+</style>

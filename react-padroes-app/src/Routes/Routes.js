@@ -1,8 +1,8 @@
 import React from 'react';
 import {BrowserRouter, Switch,Route } from "react-router-dom";
 
-import List from "../pages/ListView/index";
-import Login from "../pages/LoginView/index";
+import List from "../View/ListView/index";
+import Login from "../View/LoginView/index";
 
 function Routes () {
     return (
