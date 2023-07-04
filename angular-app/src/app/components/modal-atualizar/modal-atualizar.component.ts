@@ -1,5 +1,7 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, Input } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Tarefa } from 'src/app/tarefas/shared/tarefa';
+import { TarefaService } from 'src/app/tarefas/shared/tarefa.service';
 
 @Component({
   selector: 'app-modal-atualizar',
@@ -8,21 +10,29 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 })
 export class ModalAtualizarComponent implements OnInit{
   modalRef!: BsModalRef;
-  constructor(private modalService: BsModalService) {}
+  @Input() item!: Tarefa;
+  constructor(private modalService: BsModalService, private tarefaService: TarefaService) {}
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
 
-  closeModal(){
-    /*const modelDiv = document.getElementById('janelaModal');
-    if(modelDiv != null){
-      modelDiv.style.display = 'none';
-    }*/
-  }
-
   ngOnInit(): void {
   }
 
+  updateItem(): void {
+    if (!this.item || !this.item.key) {
+      console.error('Item inválido para atualização');
+      return;
+    }
+    this.tarefaService.update(this.item.key, this.item)
+      .then(() => {
+        console.log('Atividade atualizada com sucesso!');
+        this.modalRef.hide();
+      })
+      .catch(error => {
+        console.error('Ocorreu um erro ao atualizar a atividade:', error);
+      });
+  }
 
 }

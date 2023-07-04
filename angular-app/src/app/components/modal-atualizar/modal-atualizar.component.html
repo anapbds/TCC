@@ -11,30 +11,30 @@
     <div class="text-center">
       <form >
         <div class="form-group" id="input-group-1" style="margin-top: 0.5rem">
-          <label for="InputTitle">Título da Atividade</label>
-          <input type="text" class="form-control" id="InputTitle" placeholder="Título da Atividade">
+          <label for="title">Título da Atividade</label>
+          <input type="text" class="form-control" id="title" placeholder="Título da Atividade" name="title" [(ngModel)]="item.title">
         </div>
 
         <div class="form-group" id="input-group-2" style="margin-top: 0.5rem">
           <label for="exampleInputPassword1">Descrição</label>
-          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Descrição">
+          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Descrição" name="description" [(ngModel)]="item.description">
         </div>
 
         <div class="row">
           <div class="col">
             <label for="data">Data</label>
-            <input type="date" class="form-control" id="data "placeholder="Nome">
+            <input type="date" class="form-control" id="data " name="date" [(ngModel)]="item.date">
           </div>
           <div class="col">
             <label for="hora">Hora</label>
-            <input type="time" class="form-control" id="hora" placeholder="Sobrenome">
+            <input type="time" class="form-control" id="hora" name="time" [(ngModel)]="item.time">
           </div>
         </div>
       </form>
     </div>
   </div>
    <div class="modal-footer">
-      <button type="button" class="btn btn-success">Cadastrar</button>
+      <button type="button" class="btn btn-success" (click)="updateItem()">Atualizar</button>
       <button type="button" class="btn btn-danger" (click)="modalRef.hide()">Cancelar</button>
    </div>
 </ng-template>

@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Tarefa } from 'src/app/tarefas/shared/tarefa';
 import { TarefaService } from 'src/app/tarefas/shared/tarefa.service';
-import { Database, set, ref, update, remove } from '@angular/fire/database';
+
 
 @Component({
   selector: 'app-modal-cadastro',
