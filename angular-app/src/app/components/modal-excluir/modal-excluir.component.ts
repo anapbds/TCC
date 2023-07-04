@@ -1,26 +1,37 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, Input } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Tarefa } from 'src/app/tarefas/shared/tarefa';
+import { TarefaService } from 'src/app/tarefas/shared/tarefa.service';
 
 @Component({
   selector: 'app-modal-excluir',
   templateUrl: './modal-excluir.component.html',
   styleUrls: ['./modal-excluir.component.css']
 })
-export class ModalExcluirComponent implements OnInit{
+export class ModalExcluirComponent implements OnInit {
   modalRef!: BsModalRef;
-  constructor(private modalService: BsModalService) {}
+  @Input() item?: Tarefa;
+
+  constructor(private modalService: BsModalService, private tarefaService: TarefaService) {}
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
 
-  closeModal(){
-    /*const modelDiv = document.getElementById('janelaModal');
-    if(modelDiv != null){
-      modelDiv.style.display = 'none';
-    }*/
-  }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  deleteItem(): void {
+    if (!this.item || !this.item.key) {
+      console.error('Item inválido para exclusão');
+      return;
+    }
+    this.tarefaService.delete(this.item.key)
+      .then(() => {
+        console.log('Atividade excluída com sucesso!');
+        this.modalRef.hide();
+      })
+      .catch(error => {
+        console.error('Ocorreu um erro ao excluir a atividade:', error);
+      });
   }
 }

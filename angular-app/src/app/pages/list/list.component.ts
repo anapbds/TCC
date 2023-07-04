@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Tarefa } from 'src/app/tarefas/shared/tarefa';
 import { TarefaService } from 'src/app/tarefas/shared/tarefa.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list',
@@ -17,7 +18,14 @@ export class ListComponent implements OnInit {
   }
 
   carregarTarefas(): void {
-    this.tarefaService.getAll().valueChanges().subscribe(tarefas => {
+    this.tarefaService.getAll().snapshotChanges().pipe(
+      map(changes => {
+        return changes.map(c => ({
+          key: c.payload.key,
+          ...c.payload.val()
+        }));
+      })
+    ).subscribe(tarefas => {
       this.tarefas = tarefas;
     });
   }
