@@ -8,6 +8,7 @@ import { TarefaService } from 'src/app/tarefas/shared/tarefa.service';
   templateUrl: './modal-excluir.component.html',
   styleUrls: ['./modal-excluir.component.css']
 })
+
 export class ModalExcluirComponent implements OnInit {
   modalRef!: BsModalRef;
   @Input() item?: Tarefa;
@@ -21,6 +22,7 @@ export class ModalExcluirComponent implements OnInit {
   ngOnInit(): void {}
 
   deleteItem(): void {
+    const inicio = Date.now();
     if (!this.item || !this.item.key) {
       console.error('Item inválido para exclusão');
       return;
@@ -29,9 +31,14 @@ export class ModalExcluirComponent implements OnInit {
       .then(() => {
         console.log('Atividade excluída com sucesso!');
         this.modalRef.hide();
+        const fim = Date.now();
+        const tempoResposta = fim - inicio;
+        console.log(`O tempo de resposta foi de ${tempoResposta} milissegundos.`);
       })
       .catch(error => {
         console.error('Ocorreu um erro ao excluir a atividade:', error);
       });
+
+
   }
 }

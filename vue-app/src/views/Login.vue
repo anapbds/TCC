@@ -50,10 +50,12 @@ export default {
   methods: {
 
    loginUser() {
-
+    const inicio = Date.now();
        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((user) => {
-           this.$router.push("/list");
-
+          this.$router.push("/list");
+          const fim = Date.now();
+          const tempoResposta = fim - inicio;
+          console.log(`O tempo de resposta foi de ${tempoResposta} milissegundos.`);
         }).catch(function (error) {
             // Handle Errors here.
             var errorCode = error.code;
@@ -70,18 +72,20 @@ export default {
    },
 
 
-   CadastrarUser(){
-      firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
-            .then((user) => {
-                this.history.push(`/list`);
-            })
-            .catch((error) => {
-                 console.log(error.code);
-                 console.log(error.message);
-               
-            });
-   }
-
+   CadastrarUser() {
+  const inicio = Date.now();
+  firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+    .then((user) => {
+      this.$router.push('/list');
+      const fim = Date.now();
+      const tempoResposta = fim - inicio;
+      console.log(`O tempo de resposta foi de ${tempoResposta} milissegundos.`);
+    })
+    .catch((error) => {
+      console.log(error.code);
+      console.log(error.message);
+    });
+}
 
   },
 };

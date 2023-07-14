@@ -53,11 +53,14 @@ export default function ModalCadastro() {
         date: date,
         time: time,
       };
-  
+      const inicio = Date.now();
       DataController.cadastrarAtividade(data)
         .then(() => {
           console.log("criado com sucesso!");
           setAtividade(false);
+          const fim = Date.now();
+          const tempoResposta = fim - inicio;
+          console.log(`O tempo de resposta foi de ${tempoResposta} milissegundos.`);
         })
         .catch((e) => {
           console.log(e);
@@ -127,11 +130,14 @@ export default function ModalCadastro() {
         })
       })
     }
-
+    const inicio = Date.now();
     DataController.cadastrarAtividade(data)
       .then(() => {
         console.log("criado com sucesso!");
         setAtividade(false);
+        const fim = Date.now();
+        const tempoResposta = fim - inicio;
+        console.log(`O tempo de resposta foi de ${tempoResposta} milissegundos.`);
       })
       .catch((e) => {
         console.log(e);

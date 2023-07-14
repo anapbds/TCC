@@ -95,10 +95,13 @@ export default {
         date: this.date,
         time: this.time,
     };
-
+    const inicio = Date.now();
     DataService.update(this.idprops,data)
       .then(() => {
           console.log("Atualizado com sucesso!");
+          const fim = Date.now();
+          const tempoResposta = fim - inicio;
+          console.log(`O tempo de resposta foi de ${tempoResposta} milissegundos.`);
           hideModal();
       })
       .catch((e) => {

@@ -14,10 +14,13 @@ export default function Login({ history }) {
     const [password, setPassword] = useState('');
 
     const loginUser = () => {
-
+        const inicio = Date.now();
         firebase.auth().signInWithEmailAndPassword(email, password).then(function (userCredential) {
             var user = userCredential.user;
             history.push(`/list`);
+            const fim = Date.now();
+            const tempoResposta = fim - inicio;
+            console.log(`O tempo de resposta foi de ${tempoResposta} milissegundos.`);
 
         }).catch(function (error) {
             // Handle Errors here.
@@ -34,13 +37,15 @@ export default function Login({ history }) {
     }
 
     const CadastrarUser = () => {
-
+        const inicio = Date.now();
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((userCredential) => {
-            
+                const fim = Date.now();
+                const tempoResposta = fim - inicio;
+                console.log(`O tempo de resposta foi de ${tempoResposta} milissegundos.`);
                 var user = userCredential.user;
                 history.push(`/list`);
-             
+
             })
             .catch((error) => {
                  console.log(error.code);

@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import DataController from "../Controller/Controller";
+//import DataController from "../Controller/Controller";
 import DataFactory from "../Factory/Factory";
 import DataBuilder from "../Builder/Builder";
 
@@ -61,12 +61,16 @@ export default {
    },
 
    loginUser() {
+        const inicio = Date.now();
         this.factory();
         this.Builder();
         this.builder.loginBuilder(this.factorys.email,this.factorys.password)
         .then((user) => {
              this.$router.push("/list");
-             console.log("login realizado com sucesso")
+             console.log("login realizado com sucesso");
+             const fim = Date.now();
+            const tempoResposta = fim - inicio;
+            console.log(`O tempo de resposta foi de ${tempoResposta} milissegundos.`);
         }).catch(function (error) {
              console.log(error);
         });
@@ -75,12 +79,16 @@ export default {
 
 
    CadastrarUser(){
+        const inicio = Date.now();
         this.factory();
         this.Builder();
         this.builder.CadastrarBuilder(this.factorys.email,this.factorys.password)
         .then((user) => {
-              this.history.push(`/list`);
-              console.log("cadastro realizado com sucesso")
+              this.$router.push('/list');
+              console.log("cadastro realizado com sucesso");
+              const fim = Date.now();
+              const tempoResposta = fim - inicio;
+              console.log(`O tempo de resposta foi de ${tempoResposta} milissegundos.`);
         }).catch((error) => {
               console.log(error.code);
               console.log(error.message);

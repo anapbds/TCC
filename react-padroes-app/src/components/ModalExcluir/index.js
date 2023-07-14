@@ -8,11 +8,14 @@ export default function ModalExcluir(props) {
   const [deleteAtivity, setDeleteAtivity] = useState(false);
 
   const deleteTutorial = () => {
+    const inicio = Date.now();
     DataController.deletarAtividade(id)
         .then(() => {
           console.log("Deletado com sucesso!");
           setDeleteAtivity(false);
-          
+          const fim = Date.now();
+          const tempoResposta = fim - inicio;
+          console.log(`O tempo de resposta foi de ${tempoResposta} milissegundos.`);
         })
         .catch((e) => {
           console.log(e);

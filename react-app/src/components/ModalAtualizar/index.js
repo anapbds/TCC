@@ -24,6 +24,7 @@ export default function ModalAtualizar(props){
   }, []);
 
   const updateTutorial = () =>{
+    const inicio = Date.now();
     const data = {
       title: title,
       description: description,
@@ -35,10 +36,14 @@ export default function ModalAtualizar(props){
       .then(() => {
           console.log("Atualizado com sucesso!");
           setAtividade(false);
+          const fim = Date.now();
+          const tempoResposta = fim - inicio;
+          console.log(`O tempo de resposta foi de ${tempoResposta} milissegundos.`);
       })
       .catch((e) => {
         console.log(e);
       });
+
   }
   
   return (

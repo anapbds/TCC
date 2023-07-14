@@ -21,6 +21,8 @@ export class ModalAtualizarComponent implements OnInit{
   }
 
   updateItem(): void {
+    const inicio = Date.now();
+
     if (!this.item || !this.item.key) {
       console.error('Item inválido para atualização');
       return;
@@ -29,6 +31,9 @@ export class ModalAtualizarComponent implements OnInit{
       .then(() => {
         console.log('Atividade atualizada com sucesso!');
         this.modalRef.hide();
+        const fim = Date.now();
+        const tempoResposta = fim - inicio;
+        console.log(`O tempo de resposta foi de ${tempoResposta} milissegundos.`);
       })
       .catch(error => {
         console.error('Ocorreu um erro ao atualizar a atividade:', error);

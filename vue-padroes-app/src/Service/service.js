@@ -75,9 +75,9 @@ class DataService {
 
 
   atualizarAtividadeValidar(key,value){
-    if (typeof value !== "undefined" ) {
+    /*if (typeof value !== "undefined" ) {
       alert('Atualização não efetuada, campos invalidos');
-    }
+    }*/
 
     return taskDAO.update(key,value);
   }

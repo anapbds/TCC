@@ -11,15 +11,14 @@ import { ListComponent } from './pages/list/list.component';
 import { LoginComponent } from './pages/login/login.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { AlertModule,AlertConfig } from 'ngx-bootstrap/alert';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
-import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
-import { getDatabase, provideDatabase, Database, DataSnapshot } from '@angular/fire/database';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { TarefaService } from './tarefas/shared/tarefa.service';
+import { UserServiceService } from './users/shared/user-service.service';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBCQ-xusg0Wl49wIbw6L1BQN-2RQBxUuHQ",
@@ -46,20 +45,15 @@ const firebaseConfig = {
     AppRoutingModule,
     TooltipModule.forRoot(),
     ModalModule,
-    BrowserAnimationsModule,
     BrowserModule,
-    AccordionModule,
     AlertModule,
     ButtonsModule,
-    FormsModule,
-    ModalModule,
     RouterModule,
-    provideFirebaseApp(() => initializeApp(firebaseConfig)),
-    provideDatabase(() => getDatabase()),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
-  providers: [AlertConfig, BsModalService, TarefaService],
+  providers: [AlertConfig, BsModalService, TarefaService, UserServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

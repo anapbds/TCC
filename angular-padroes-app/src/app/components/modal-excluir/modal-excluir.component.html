@@ -1,0 +1,17 @@
+<button type="button" class="btn btn-success" id="show-btn" (click)="openModal(template)"><i class="bi bi-trash-fill"></i></button>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Excluir Atividade?</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Tem certeza de que deseja excluir a tarefa {{ item?.title }}?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modalRef.hide()">Cancelar</button>
+    <button type="button" class="btn btn-success" (click)="deleteItem()">Excluir</button>
+  </div>
+</ng-template>

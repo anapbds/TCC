@@ -14,10 +14,14 @@ export default function Login({ history }) {
 
 
     const login = () =>{
+        const inicio = Date.now();
         Builder.loginBuilder(factorys.email,factorys.password)
         .then(() => {
             history.push(`/list`);
             console.log("login com sucesso!");
+            const fim = Date.now();
+            const tempoResposta = fim - inicio;
+            console.log(`O tempo de resposta foi de ${tempoResposta} milissegundos.`);
         })
         .catch((e) => {
         console.log(e);
@@ -25,10 +29,14 @@ export default function Login({ history }) {
     }
 
     const CadastrarUser = () =>{
+        const inicio = Date.now();
         Builder.CadastrarBuilder(factorys.email,factorys.password)
         .then(() => {
             history.push(`/list`);
             console.log("cadastrado com sucesso!");
+            const fim = Date.now();
+            const tempoResposta = fim - inicio;
+            console.log(`O tempo de resposta foi de ${tempoResposta} milissegundos.`);
         })
         .catch((e) => {
         console.log(e);

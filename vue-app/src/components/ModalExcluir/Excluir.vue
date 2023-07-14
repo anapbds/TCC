@@ -1,7 +1,7 @@
 <template>
   <div>
 
-  <b-button  variant="success" size="sm" id="show-btn" @click="showModal()"><i class="far fa-trash-alt"></i></b-button>
+  <b-button variant="success" size="sm" id="show-btn" @click="showModal()"><i class="far fa-trash-alt"></i></b-button>
 
   <b-modal id="modal-2"  title="BootstrapVue">
 
@@ -10,7 +10,7 @@
     </template>
 
     <div class="d-block text-center">
-      Descrição: {{descricao}}
+      Descrição: {{ descricao }}
     </div>
 
     <template #modal-footer>
@@ -29,40 +29,38 @@ import DataService from "../../services/service";
 
 export default {
   name: "Lista",
-  props: ['idprops','descricao'],
+  props: ['idprops', 'descricao'],
   data() {
-    return {
-     
-    };
+    return {};
   },
   methods: {
-
     showModal() {
-        this.$bvModal.show('modal-2');
+      this.$bvModal.show('modal-2');
     },
     hideModal() {
-        this.$bvModal.hide('modal-2');
+      this.$bvModal.hide('modal-2');
     },
 
-    deleteTutorial(){
-          DataService.delete(this.idprops)
-            .then(() => {
-               console.log("Deletado com sucesso!");
-               hideModal();
-
-            })
-            .catch((e) => {
-              console.log(e);
-            });
-      }
+    deleteTutorial() {
+      const inicio = Date.now();
+      DataService.delete(this.idprops)
+        .then(() => {
+          console.log("Deletado com sucesso!");
+          const fim = Date.now();
+          const tempoResposta = fim - inicio;
+          console.log(`O tempo de resposta foi de ${tempoResposta} milissegundos.`);
+          this.hideModal(); // Corrigido para usar this.hideModal()
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    }
   },
 };
 </script>
 
-<style  scoped>
-
+<style scoped>
 .text-center {
     text-align: left !important;
 }
-
-</style>>
+</style>

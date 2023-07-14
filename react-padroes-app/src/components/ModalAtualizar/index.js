@@ -27,11 +27,14 @@ export default function ModalAtualizar(props){
       date: date,
       time: time,
     };
-
+    const inicio = Date.now();
     DataController.atualizarAtividade(id, data)
       .then(() => {
           console.log("Atualizado com sucesso!");
           setAtividade(false);
+          const fim = Date.now();
+          const tempoResposta = fim - inicio;
+          console.log(`O tempo de resposta foi de ${tempoResposta} milissegundos.`);
       })
       .catch((e) => {
         console.log(e);

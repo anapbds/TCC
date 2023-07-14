@@ -1,6 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Tarefa } from 'src/app/tarefas/shared/tarefa';
 import { TarefaService } from 'src/app/tarefas/shared/tarefa.service';
 
 
@@ -9,6 +8,7 @@ import { TarefaService } from 'src/app/tarefas/shared/tarefa.service';
   templateUrl: './modal-cadastro.component.html',
   styleUrls: ['./modal-cadastro.component.css']
 })
+
 export class ModalCadastroComponent implements OnInit {
   modalRef!: BsModalRef;
   itemList: any[] = [];
@@ -32,6 +32,7 @@ export class ModalCadastroComponent implements OnInit {
   }
 
   addItem(): void {
+    const inicio = Date.now();
     if (!this.title || !this.description || !this.date || !this.time) {
       console.log('Por favor, preencha todos os campos obrigatórios.');
       return;
@@ -52,9 +53,14 @@ export class ModalCadastroComponent implements OnInit {
         this.description = '';
         this.date = '';
         this.time = '';
+        const fim = Date.now();
+        const tempoResposta = fim - inicio;
+        console.log(`O tempo de resposta foi de ${tempoResposta} milissegundos.`);
       })
       .catch((error: any) => {
         console.error('Ocorreu um erro ao cadastrar a atividade:', error);
       });
+
+
   }
 }
